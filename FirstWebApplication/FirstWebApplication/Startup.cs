@@ -11,8 +11,7 @@ namespace FirstWebApplication
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        
         public void ConfigureServices(IServiceCollection services)
         {
         }
@@ -27,9 +26,9 @@ namespace FirstWebApplication
 
             app.Map("/home", home =>
             {
-                
                 home.Map("/index", Index);
                 home.Map("/about", About);
+                home.Map("", Home);
             });
            
             app.Run(async (context) =>
@@ -39,11 +38,8 @@ namespace FirstWebApplication
         }
         private void Index(IApplicationBuilder app)
         {
-            app.MapWhen(context => {
-
-                return context.Request.Query.ContainsKey("id") &&
-                       context.Request.Query["id"] == "5";
-            }, HandleId);
+            app.MapWhen(context => context.Request.Query.ContainsKey("id") &&
+                                   context.Request.Query["id"] == "5", HandleId);
             app.Run(async context=> await  context.Response.WriteAsync("<h1>Index</h1>")
             );
         }
@@ -58,6 +54,11 @@ namespace FirstWebApplication
         private void About(IApplicationBuilder app)
         {
             app.Run(async context=> await  context.Response.WriteAsync("<h1>About</h1>")
+            );
+        }
+        private void Home(IApplicationBuilder app)
+        {
+            app.Run(async context => await context.Response.WriteAsync("<h1>Home Page</h1>")
             );
         }
     }
