@@ -23,7 +23,10 @@ namespace FirstWebApplication
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //app.UseMiddleware<TokenMiddleware>(); we can add extansions and write other form
+            string pattern = "123";
+            app.UseToken(pattern);//and it will be work correctly
+            //http://localhost:49246/home/?token=123456
             app.Map("/home", home =>
             {
                 home.Map("/index", Index);
