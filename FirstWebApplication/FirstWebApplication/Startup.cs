@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace FirstWebApplication
 {
@@ -17,12 +18,15 @@ namespace FirstWebApplication
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            loggerFactory.AddDebug();
+            var logger = loggerFactory.CreateLogger("RequestInfoLogger");
+            app.UseStaticFiles();
             //app.UseMiddleware<TokenMiddleware>(); we can add extansions and write other form
             string pattern = "123";
             app.UseToken(pattern);//and it will be work correctly
@@ -37,6 +41,7 @@ namespace FirstWebApplication
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Page Not Found");
+                logger.LogInformation("Processing request {0}", context.Request.Path);
             });
         }
         private void Index(IApplicationBuilder app)
