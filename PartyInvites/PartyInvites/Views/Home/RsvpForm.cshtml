@@ -9,6 +9,29 @@
     <title>RsvpForm</title>
 </head>
 <body>
-<h4> This is RSVP Forms. Welcome</h4>
+    <h4> This is RSVP Forms. Welcome</h4>
+    <form asp-action="RsvpForm" method="post">
+        <p>
+            <label asp-for="Name">Your Name</label>
+            <input asp-for="Name" />
+        </p>
+        <p>
+            <label asp-for="Email">Your Email</label>
+            <input asp-for="Email"/>
+        </p>
+        <p>
+            <label asp-for="Phone">Your Phon</label>
+            <input asp-for="Phone"/>
+        </p>
+        <p>
+            <label>Will you Attend?</label>
+            <select asp-for="WillAttend">
+                <option value="">Choose an option</option>
+                <option value="true">Yes,I'll be there</option>
+                <option value="false">No,I can't came</option>
+            </select>
+        </p>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
