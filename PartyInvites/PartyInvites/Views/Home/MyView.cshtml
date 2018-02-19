@@ -4,15 +4,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
     <title>My View</title>
 </head>
 <body>
-<div> @ViewBag.Greeting Dear User 
-    <p>We're going to have an exciting party.<br />
-        <img src="../../wwwroot/images/1.jpg" alt="Event  Img" />
-    </p>
-    <br/>
-    <a asp-action="RsvpForm"> Go To RSVP Form</a>
-</div>
+    <div class="text-center">
+        <div>
+            @ViewBag.Greeting Dear User
+
+
+            <h3>We're going to have an exciting party!</h3>
+            <h4>And you are invited</h4>
+            <a class="btn btn-primary" asp-action="RsvpForm">RSVP Now</a>
+
+            <img src="//wwwroot/images/1.jpg" alt="Event  Img" />
+
+            <br />
+            <a asp-action="RsvpForm"> Go To RSVP Form</a>
+        </div>
+    </div>
 </body>
 </html>
