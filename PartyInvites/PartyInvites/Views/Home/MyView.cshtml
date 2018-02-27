@@ -10,13 +10,15 @@
 <body>
     <div class="text-center">
         <div>
-            
+
             @ViewBag.Greeting Dear User
             <h3>We're going to have an exciting party!</h3>
             <h4>And you are invited</h4>
-            <img src="~/images/1.jpg" alt="Event  Img"/>
-            <br/>
-            <br/>
+            <img src="~/images/1.jpg" alt="Event  Img" />
+            <br />
+            <p>Request Time: @DateTime.Now.ToString("HH:mm:ss")</p>
+            <br />
+
             <a class="btn btn-primary" asp-action="RsvpForm">RSVP Now</a>
             <a asp-action="RsvpForm"> Go To RSVP Form</a>
         </div>

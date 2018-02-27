@@ -38,7 +38,7 @@ namespace PartyInvites
             }
 
             app.UseStaticFiles();
-
+            app.UseBrowserLink();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
